@@ -1,0 +1,25 @@
+<dom-module id="article-modal">
+  <template id="modal-dialog">
+    <paper-dialog id="dialog"></paper-dialog>
+  </template>
+  <script>
+    class articleModal extends Polymer.Element {
+      ready() {
+        super.ready();
+      }
+      static get is() {
+        return 'article-modal';
+      }
+      static get properties() {
+        return {
+          pmid: {
+            type: String,
+            notify: true,
+            value: "dialog"
+          }
+        };
+      }
+    }
+    window.customElements.define(articleModal.is, articleModal);
+  </script>
+</dom-module>

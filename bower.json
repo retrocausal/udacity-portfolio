@@ -1,0 +1,30 @@
+{
+  "name": "portfolio",
+  "description": "udacity project portfolio",
+  "main": "gulpfile.js",
+  "authors": [
+    "Nitin"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "portfolio"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-styles": "PolymerElements/paper-styles#2.0.0",
+    "paper-dialog": "PolymerElements/paper-dialog#2.0.0",
+    "paper-button": "PolymerElements/paper-button#2.0.0",
+    "neon-animation": "PolymerElements/neon-animation#2.0.0"
+  }
+}
