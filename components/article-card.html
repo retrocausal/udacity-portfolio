@@ -1,234 +1,84 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation.html">
+<link rel="import" href="article-card-styler.html">
 <dom-module id="article-card">
   <template id="card">
-    <style media="screen">
-      :host {
-        box-shadow: 0 0 10px 0 #333;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: space-around;
-      }
-      .article-card-layout,
-      .modal-layout {
-        width: 100%;
-      }
-      .container {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Montserrat", Helvetica, sans-serif;
-        font-variant: small-caps;
-        font-variant-caps: petite-caps;
-      }
-      .breathe {
-        font-size: large;
-        line-height: 1;
-      }
-      .breathe::after,
-      .breathe::before {
-        content: '\00A0';
-      }
-      .footer,
-      .header {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #fff;
-      }
-      .footer,
-      .header,
-      .main {
-        width: 100%;
-      }
-      .title {
-        text-align: center;
-      }
-      .cover-image {
-        padding: 0.125em;
-        max-width: 100%;
-      }
-      .brief-description {
-        text-align: justify;
-        padding: 1em;
-      }
-      .article-panel {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        border-top: 0.1em solid #d0d0d0;
-      }
-      .article-info,
-      .github-link {
-        width: 50%;
-        margin: 0;
-        padding: 0.5em 0.5em 0;
-        font-size: xx-large;
-        font-weight: lighter;
-      }
-      .article-info,
-      .article-info-anchor {
-        text-align: right;
-      }
-      .article-info-anchor,
-      .article-info-anchor:hover,
-      .article-info-anchor:visited,
-      .github-link-anchor,
-      .github-link-anchor:hover,
-      .github-link-anchor:visited {
-        text-decoration: none;
-        color: initial;
-      }
-      .github-link-anchor::after {
-        content: "\1F517";
-        cursor: pointer;
-      }
-      .article-info-anchor::after {
-        content: "\2139";
-        font-size: larger;
-        color: #666;
-        cursor: pointer;
-      }
-      .modals {
-        width: 100%;
-      }
-      .modal-dialog {
-        max-width: 100%;
-        width: 93%;
-        max-height: 100%;
-      }
-      .modal-actions {
-        display: flex;
-        justify-content: flex-end;
-      }
-      .modal-title {
-        text-align: center;
-      }
-      .action-panel {
-        text-align: right;
-      }
-      .modal-main {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: flex-start;
-        padding: 1em;
-      }
-      .modal-cover {
-        width: 100%;
-      }
-      .modal-detailed-description {
-        width: 100%;
-        text-align: justify;
-        font-size: large;
-        padding: 2em 0.1em;
-      }
-      img {
-        max-width: 100%;
-      }
-      figure {
-        margin: 0;
-        max-width: 100%;
-      }
-      @media screen and (min-width:765px) {
-        .modal-cover {
-          width: calc((.55)*90%);
-        }
-        .modal-detailed-description {
-          width: calc((.45*90%) - 2em);
-          padding: 0 0.25em;
-        }
-      }
-      @media screen and (min-width:990px) {
-        .modal-cover {
-          width: calc(.67*90%);
-        }
-        .modal-detailed-description {
-          width: calc((.33*90%) - 2em);
-          padding: 0 0.25em;
-        }
-      }
-    </style>
+    <custom-style>
+      <style media="screen" is="custom-style" include="article-card-styler"></style>
+    </custom-style>
     <div id="article-card-layout" class="article-card-layout">
       <article class="container">
         <section class="header">
           <div class="breathe"></div>
           <h2 class="title">{{project.title}}</h2>
-          <div class="cover-image">
-            <figure>
-              <template is="dom-if" if="{{!project.featured}}">
+          <template is="dom-if" if="{{!project.featured}}">
+            <div class="cover-image responsive-cover-image">
+              <figure>
                 <picture>
                   <source
                     srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
-                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                            {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+{{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
                     media="(max-width:764px)"
                     sizes="99.99vw">
                   <source
                     srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
-                          {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                          {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+{{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                     media="(min-width:765px)"
                     sizes="calc((90vw - 1em) / 2)">
                   <source
                     srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                            {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
-                            {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+{{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
+{{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                     media="(min-width:1280px)"
                     sizes="calc((90vw) / 3)">
                   <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
                 </picture>
-              </template>
-              <template is="dom-if" if="{{project.featured}}">
+              </figure>
+            </div>
+          </template>
+          <template is="dom-if" if="{{project.featured}}">
+            <div class="cover-image">
+              <figure>
                 <picture>
                   <source
                     srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
-                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                            {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+{{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
                     media="(max-width:764px)"
                     sizes="100vw">
                   <source
                     srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
-                          {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                          {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+{{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                     media="(min-width:765px)"
                     sizes="100vw">
                   <source
                     srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                            {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
-                            {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+{{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
+{{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                     media="(min-width:1280px)"
                     sizes="100vw">
                   <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
                 </picture>
-              </template>
-              <figcaption>{{project.coverImg.caption}}</figcaption>
-            </figure>
-          </div>
-          <div class="breathe"></div>
+
+              </figure>
+            </div>
+          </template>
+          <!-- <div class="breathe"></div> -->
         </section>
         <section class="main">
+          <div class="breathe"></div>
           <div class="breathe"></div>
           <div class="brief-description">
             {{project.description}}
           </div>
-          <div class="article-meta"></div>
           <div class="breathe"></div>
         </section>
         <section class="footer">
-          <div class="breathe"></div>
           <div class="article-panel">
             <h4 class="github-link">
               <a class="github-link-anchor" target="_blank" href="{{project.meta.github}}"></a>
@@ -254,35 +104,33 @@
           <section class="modal-header">
             <h2 class="modal-title">{{project.title}}</h2>
           </section>
-          <section class="modal-main">
-            <div class="modal-cover">
-              <figure>
-                <picture>
-                  <source
-                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
-                              {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                              {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
-                    media="(max-width:764px)"
-                    sizes="100vw">
-                  <source
-                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
-                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                            {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
-                    media="(min-width:765px)"
-                    sizes="calc((.59) * 90%)">
-                  <source
-                    srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
-                              {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
-                              {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
-                    media="(min-width:999px)"
-                    sizes="calc(.67*90%)">
-                  <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="{{project.title}} cover image">
-                </picture>
-                <figcaption>{{project.coverImg.caption}}</figcaption>
-              </figure>
-            </div>
-            <div class="modal-detailed-description">{{project.description}}</div>
-          </section>
+          <paper-dialog-scrollable class="scrollable-dialog">
+            <section class="modal-main">
+              <div class="modal-cover">
+                <figure>
+                  <picture>
+                    <source
+                      srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w, {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w, {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+                      media="(max-width:764px)"
+                      sizes="100vw">
+                    <source
+                      srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w, {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w, {{project.coverImg.src}}-x-large.{{project.coverImg.format}}
+1280w"
+                      media="(min-width:765px)"
+                      sizes="calc((.59) * 90%)">
+                    <source
+                      srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w, {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
+{{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+                      media="(min-width:999px)"
+                      sizes="calc(.67*90%)">
+                    <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="{{project.title}} cover image">
+                  </picture>
+                  <figcaption>{{project.coverImg.caption}}</figcaption>
+                </figure>
+              </div>
+              <div class="modal-detailed-description">{{project.description}}</div>
+            </section>
+          </paper-dialog-scrollable>
           <section class="modal-footer"></section>
         </paper-dialog>
       </section>
@@ -290,6 +138,11 @@
   </template>
   <script>
     class articleCard extends Polymer.Element {
+
+      constructor(project) {
+        super();
+        this.project = project;
+      }
       static get is() {
         return 'article-card';
       }
@@ -320,6 +173,10 @@ Felix's origins remain disputed.`,
             type: String,
             computed: 'getPMID(project.title)',
             notify: true
+          },
+          bgSrc: {
+            type: String,
+            computed: 'deriveBGSRC(project)'
           }
         };
       }
@@ -328,6 +185,11 @@ Felix's origins remain disputed.`,
         t = t.toLowerCase();
         let r = Date.now();
         return (t + r);
+      }
+      deriveBGSRC(project) {
+        let strSrc;
+        strSrc = `url("${project.coverImg.src}-large.${project.coverImg.format}")`;
+        return strSrc;
       }
       ready() {
         super.ready();

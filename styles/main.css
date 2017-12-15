@@ -6,13 +6,13 @@
   font-family: "Raleway", Helvetica, sans-serif;
 }
 
-img,
-video,
-embed,
 canvas,
-iframe,
+embed,
 figure,
-picture {
+iframe,
+img,
+picture,
+video {
   max-width: 100%;
   margin: 0;
 }
@@ -30,10 +30,6 @@ header {
   background: #111010;
 }
 
-footer {
-  min-height: 300px;
-}
-
 sup {
   width: auto;
   font-family: "Cinzel Decorative", Helvetica, sans-serif;
@@ -44,9 +40,9 @@ sup {
   line-height: 3;
 }
 
-.breathe::before,
-.breathe::after {
-  content: '\00A0';
+.breathe::after,
+.breathe::before {
+  content: "\00A0";
 }
 
 .pad-top {
@@ -112,7 +108,7 @@ h6 {
 .dp-as-text {
   width: auto;
   font-family: "Cinzel Decorative", Helvetica, sans-serif;
-  margin: -.6em 0 0;
+  margin: -0.6em 0 0;
   font-size: 3.75em;
 }
 
@@ -185,6 +181,6 @@ article-card[unresolved] {
   min-width: 100%;
 }
 
-.featured {
+.project-card:first-of-type {
   width: 100%;
 }

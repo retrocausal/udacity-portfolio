@@ -1,88 +1,89 @@
 @media screen and (min-width:501px) {
-  .display-picture,
-  .display-card {
+  .display-card,
+  .display-picture {
     font-size: larger;
   }
 }
-
 @media screen and (min-width:767px) {
   body {
     background: #f4f8fb;
   }
+
   .logo,
   .name {
     flex-flow: row;
     justify-content: space-between;
   }
+
   .logo {
     width: 30%;
     padding: 0 0 0 2em;
   }
+
   .name {
     width: 70%;
     flex-grow: 1;
     padding: 0 2em 0 0;
   }
+
   .display-picture {
     justify-content: center;
     align-items: flex-start;
     font-size: initial;
   }
+
   .display-card {
     justify-content: center;
     align-items: flex-end;
   }
+
   .superpower {
     font-size: 1.31em;
-    padding: .8em;
+    padding: 0.8em;
   }
+
   .container {
     width: 90%;
-    margin: -1.75em auto -.25em;
+    margin: -1.75em auto -0.25em;
     z-index: 100;
   }
+
   .article-grid {
     flex-direction: row;
   }
+
   .project-card {
     width: 50%;
   }
-  .featured {
-    width: 100%;
-  }
 }
-
 @media screen and (min-width:900px) {
   .logo {
     padding: 0 0 0 3.25em;
   }
+
   .name {
     padding: 0 3.25em 0 0;
   }
 }
-
 @media screen and (min-width:991px) {
   .project-card {
     width: 33.333%;
   }
-  .featured {
-    width: 100%;
-  }
 }
-
 @media screen and (min-width:1080px) {
   .display-picture {
     font-size: large;
   }
+
   .display-card {
     font-size: x-large;
   }
 }
-
 @media screen and (min-width:1180px) {
   .logo {
     padding: 0 0 0 4.5em;
   }
+
   .name {
     padding: 0 4.5em 0 0;
   }

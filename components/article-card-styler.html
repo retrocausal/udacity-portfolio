@@ -1,0 +1,235 @@
+<dom-module id="article-card-styler">
+  <template id="article-card-styles">
+    <style>
+      :host {
+        box-shadow: 0 0 10px 0 #333;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .article-card-layout,
+      .modal-layout {
+        width: 100%;
+      }
+      .container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Quicksand", Helvetica, sans-serif;
+        font-variant: small-caps;
+        font-variant-caps: petite-caps;
+      }
+      .breathe {
+        font-size: large;
+        line-height: 1;
+      }
+      .breathe::after,
+      .breathe::before {
+        content: '\00A0';
+      }
+      .footer,
+      .header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #fff;
+      }
+      .footer,
+      .header,
+      .main {
+        width: 100%;
+      }
+      .title {
+        text-align: center;
+      }
+      .cover-image {
+        padding: 0.125em;
+        max-width: 100%;
+      }
+      .brief-description {
+        text-align: justify;
+        padding: 1em;
+        font-family: "Raleway", sans-serif;
+      }
+      .article-panel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-top: 0.1em solid #d0d0d0;
+      }
+      .article-info,
+      .github-link {
+        width: 50%;
+        margin: 0;
+        padding: 0.5em 0.5em 0;
+        font-size: xx-large;
+        font-weight: lighter;
+      }
+      .article-info,
+      .article-info-anchor {
+        text-align: right;
+      }
+      .article-info-anchor,
+      .article-info-anchor:hover,
+      .article-info-anchor:visited,
+      .github-link-anchor,
+      .github-link-anchor:hover,
+      .github-link-anchor:visited {
+        text-decoration: none;
+        color: initial;
+      }
+      .github-link-anchor::after {
+        content: "\1F517";
+        cursor: pointer;
+      }
+      .article-info-anchor::after {
+        content: "\2139";
+        font-size: larger;
+        color: #666;
+        cursor: pointer;
+      }
+      .modals {
+        width: 100%;
+      }
+      .modal-dialog {
+        max-width: 100%;
+        width: 93%;
+        max-height: 100%;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .modal-title {
+        text-align: center;
+      }
+      .action-panel {
+        text-align: right;
+      }
+      .modal-main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 1em;
+      }
+      .modal-cover {
+        width: 100%;
+        background-size: contain;
+      }
+      .modal-detailed-description {
+        width: 100%;
+        text-align: justify;
+        font-size: large;
+        padding: 2em 0.1em;
+      }
+      .scrollable-dialog {
+        height: 480px;
+        @apply --layout-vertical;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      figure {
+        margin: 0;
+        max-width: 100%;
+      }
+      figcaption {
+        text-align: center;
+        font-size: large;
+        padding: 1em 0;
+      }
+      @media screen and (min-width: 765px) {
+        figcaption {
+          font-size: larger;
+        }
+        .brief-description {
+          position: relative;
+          height: calc((1.5*3*1.2em) - 0.25em);
+          font-size: larger;
+          line-height: 1.5;
+          overflow: hidden;
+          word-spacing: 0.1em;
+        }
+        .brief-description:after {
+          content: "";
+          text-align: right;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 90%;
+          height: 1.5em;
+          background: linear-gradient(to right, rgba(255, 255, 255, 0),#f4f8fc 55%);
+        }
+        .modal-cover {
+          width: calc((0.55)*90%);
+          height: calc(0.55 * (9/16) * 90vw);
+          max-height: calc(0.55 * (9/16) * 90vw);
+        }
+        .modal-cover img {
+          width: 100%;
+          height: calc(0.55 * (9/16) * 90vw);
+          max-height: calc(0.55 * (9/16) * 90vw);
+          object-fit: contain;
+          object-position: top;
+        }
+        .modal-detailed-description {
+          width: calc((0.45*90%) - 2em);
+          padding: 0 0.25em;
+        }
+        .responsive-cover-image {
+          max-height: calc((90vw - 1em) / 2);
+          height: calc((90vw - 1em) / 2);
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          text-align: center;
+        }
+        .responsive-cover-image img {
+          max-height: calc((90vw - 1em) / 2);
+          height: calc((90vw - 1em) / 2);
+          object-fit: contain;
+        }
+      }
+      @media screen and (min-width: 990px) {
+        .modal-cover {
+          width: calc(0.67 * 90%);
+          height: calc(0.67 * (9/16) * 90vw);
+          max-height: calc(0.67 * (9/16) * 90vw);
+        }
+        .modal-cover img {
+          width: 100%;
+          height: calc(0.67 * (9/16) * 90vw);
+        }
+        .modal-detailed-description {
+          width: calc((.33*90%) - 2em);
+          padding: 0 0.25em;
+        }
+        .responsive-cover-image {
+          max-height: calc((90vw) / 3);
+          height: calc((90vw) / 3);
+        }
+        .responsive-cover-image img {
+          max-height: calc((90vw) / 3);
+          height: calc((90vw) / 3);
+        }
+        figcaption {
+          font-size: x-large;
+        }
+      }
+    </style>
+  </template>
+</dom-module>

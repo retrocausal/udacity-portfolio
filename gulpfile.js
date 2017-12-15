@@ -36,7 +36,9 @@ const i_optimize = function () {
     }, {
       withMetadata: false,
       errorOnEnlargement: false,
-      progressive: true
+      progressive: true,
+      withoutEnlargement: false,
+      crop: 'entropy'
     }))
     .pipe($.imagemin([
       $.imagemin.jpegtran({
