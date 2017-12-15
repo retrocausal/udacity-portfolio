@@ -10,12 +10,10 @@ img,
 video,
 embed,
 canvas,
-iframe {
+iframe,
+figure,
+picture {
   max-width: 100%;
-  margin: 0;
-}
-
-figure {
   margin: 0;
 }
 
@@ -185,4 +183,8 @@ article-card[unresolved] {
   justify-content: space-around;
   min-height: 100px;
   min-width: 100%;
+}
+
+.featured {
+  width: 100%;
 }

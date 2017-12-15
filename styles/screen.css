@@ -45,7 +45,10 @@
     flex-direction: row;
   }
   .project-card {
-    width: calc(50% - 2em);
+    width: 50%;
+  }
+  .featured {
+    width: 100%;
   }
 }
 
@@ -60,7 +63,10 @@
 
 @media screen and (min-width:991px) {
   .project-card {
-    width: calc(33.33% - 1em);
+    width: 33.333%;
+  }
+  .featured {
+    width: 100%;
   }
 }
 

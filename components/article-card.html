@@ -1,7 +1,6 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation.html">
-<link rel="import" href="article-modal.html">
 <dom-module id="article-card">
   <template id="card">
     <style media="screen">
@@ -12,15 +11,17 @@
         flex-direction: column;
         justify-content: space-around;
       }
+      .article-card-layout,
+      .modal-layout {
+        width: 100%;
+      }
       .container {
-        padding: 0.1em;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
       }
-      img {
-        max-width: 100%;
-      }
-      figure {
-        margin: 0;
-      }
+
       h1,
       h2,
       h3,
@@ -45,9 +46,19 @@
         flex-wrap: wrap;
         justify-content: center;
         flex-direction: column;
+        background-color: #fff;
+      }
+      .footer,
+      .header,
+      .main {
+        width: 100%;
       }
       .title {
         text-align: center;
+      }
+      .cover-image {
+        padding: 0.125em;
+        max-width: 100%;
       }
       .brief-description {
         text-align: justify;
@@ -90,29 +101,119 @@
         color: #666;
         cursor: pointer;
       }
+      .modals {
+        width: 100%;
+      }
+      .modal-dialog {
+        max-width: 100%;
+        width: 93%;
+        max-height: 100%;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .modal-title {
+        text-align: center;
+      }
+      .action-panel {
+        text-align: right;
+      }
+      .modal-main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 1em;
+      }
+      .modal-cover {
+        width: 100%;
+      }
+      .modal-detailed-description {
+        width: 100%;
+        text-align: justify;
+        font-size: large;
+        padding: 2em 0.1em;
+      }
+      img {
+        max-width: 100%;
+      }
+      figure {
+        margin: 0;
+        max-width: 100%;
+      }
+      @media screen and (min-width:765px) {
+        .modal-cover {
+          width: calc((.55)*90%);
+        }
+        .modal-detailed-description {
+          width: calc((.45*90%) - 2em);
+          padding: 0 0.25em;
+        }
+      }
+      @media screen and (min-width:990px) {
+        .modal-cover {
+          width: calc(.67*90%);
+        }
+        .modal-detailed-description {
+          width: calc((.33*90%) - 2em);
+          padding: 0 0.25em;
+        }
+      }
     </style>
-    <div id="article-card-layout">
+    <div id="article-card-layout" class="article-card-layout">
       <article class="container">
         <section class="header">
           <div class="breathe"></div>
-          <h3 class="title">{{project.title}}</h3>
+          <h2 class="title">{{project.title}}</h2>
           <div class="cover-image">
             <figure>
-              <picture>
-                <source
-                  srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
+              <template is="dom-if" if="{{!project.featured}}">
+                <picture>
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
+                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                            {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+                    media="(max-width:764px)"
+                    sizes="99.99vw">
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
                           {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
                           {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
-                  media="(min-width:765px)"
-                  sizes="calc((90vw - 1em) / 2)">
-                <source
-                  srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                    media="(min-width:765px)"
+                    sizes="calc((90vw - 1em) / 2)">
+                  <source
+                    srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
                             {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
                             {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
-                  media="(min-width:1280px)"
-                  sizes="calc((90vw) / 3)">
-                <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
-              </picture>
+                    media="(min-width:1280px)"
+                    sizes="calc((90vw) / 3)">
+                  <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
+                </picture>
+              </template>
+              <template is="dom-if" if="{{project.featured}}">
+                <picture>
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
+                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                            {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+                    media="(max-width:764px)"
+                    sizes="100vw">
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
+                          {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                          {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+                    media="(min-width:765px)"
+                    sizes="100vw">
+                  <source
+                    srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                            {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
+                            {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+                    media="(min-width:1280px)"
+                    sizes="100vw">
+                  <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
+                </picture>
+              </template>
               <figcaption>{{project.coverImg.caption}}</figcaption>
             </figure>
           </div>
@@ -133,17 +234,59 @@
               <a class="github-link-anchor" target="_blank" href="{{project.meta.github}}"></a>
             </h4>
             <h4 class="article-info">
-              <a class="article-info-anchor" name="{{pmid}}" on-click="modulize"></a>
-              <paper-dialog id="[[pmid]]">
-                <h2>h2</h2>
-              </paper-dialog>
+              <a class="article-info-anchor" name="{{pmid}}" on-click="modalize"></a>
             </h4>
           </div>
           <div id="breathe" class="breathe"></div>
         </section>
       </article>
     </div>
-    <article-modal id="amodal" pmid="{{pmid}}"></article-modal>
+    <div class="modal-layout">
+      <section class="modals">
+        <paper-dialog class="modal-dialog" id="[[pmid]]" allowclickthrough="allowClickThrough">
+          <section class="modal-actions">
+            <div class="action-panel">
+              <paper-button raised="raised" autofocus="autofocus" dialog-dismiss="dialog-dismiss">
+                <span class="dismiss-modal">close</span>
+              </paper-button>
+            </div>
+          </section>
+          <section class="modal-header">
+            <h2 class="modal-title">{{project.title}}</h2>
+          </section>
+          <section class="modal-main">
+            <div class="modal-cover">
+              <figure>
+                <picture>
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 600w,
+                              {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                              {{project.coverImg.src}}-small.{{project.coverImg.format}} 480w"
+                    media="(max-width:764px)"
+                    sizes="100vw">
+                  <source
+                    srcset="{{project.coverImg.src}}-medium.{{project.coverImg.format}} 640w,
+                            {{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                            {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+                    media="(min-width:765px)"
+                    sizes="calc((.59) * 90%)">
+                  <source
+                    srcset="{{project.coverImg.src}}-large.{{project.coverImg.format}} 960w,
+                              {{project.coverImg.src}}-xx-large.{{project.coverImg.format}} 1600w,
+                              {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
+                    media="(min-width:999px)"
+                    sizes="calc(.67*90%)">
+                  <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="{{project.title}} cover image">
+                </picture>
+                <figcaption>{{project.coverImg.caption}}</figcaption>
+              </figure>
+            </div>
+            <div class="modal-detailed-description">{{project.description}}</div>
+          </section>
+          <section class="modal-footer"></section>
+        </paper-dialog>
+      </section>
+    </div>
   </template>
   <script>
     class articleCard extends Polymer.Element {
@@ -163,7 +306,7 @@ Felix's origins remain disputed.`,
                 format: "jpg",
                 caption: ""
               },
-              featured: false,
+              featured: true,
               meta: {
                 skills: [],
                 beginDate: "",
@@ -191,9 +334,9 @@ Felix's origins remain disputed.`,
         this.removeAttribute('unresolved');
 
       }
-      modulize(e) {
+      modalize(e) {
         let t = e.target.getAttribute('name');
-        console.log(t, this.$[t], this.root.querySelector("#" + t));
+        this.root.querySelector("#" + t).open();
       }
     }
     window.customElements.define(articleCard.is, articleCard);
