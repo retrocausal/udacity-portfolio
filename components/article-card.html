@@ -13,6 +13,7 @@
         <section class="header">
           <div class="breathe"></div>
           <h2 class="title">{{project.title}}</h2>
+          <div class="breathe"></div>
           <template is="dom-if" if="{{!project.featured}}">
             <div class="cover-image responsive-cover-image">
               <figure>
@@ -64,14 +65,12 @@
                     sizes="100vw">
                   <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
                 </picture>
-
               </figure>
             </div>
           </template>
           <!-- <div class="breathe"></div> -->
         </section>
         <section class="main">
-          <div class="breathe"></div>
           <div class="breathe"></div>
           <div class="brief-description">
             {{project.description}}
@@ -96,8 +95,8 @@
         <paper-dialog class="modal-dialog" id="[[pmid]]" allowclickthrough="allowClickThrough">
           <section class="modal-actions">
             <div class="action-panel">
-              <paper-button raised="raised" autofocus="autofocus" dialog-dismiss="dialog-dismiss">
-                <span class="dismiss-modal">close</span>
+              <paper-button class="dismiss-modal" raised="raised" autofocus="autofocus" dialog-dismiss="dialog-dismiss">
+                <span>close</span>
               </paper-button>
             </div>
           </section>

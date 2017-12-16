@@ -273,4 +273,5 @@ article-card[unresolved] {
 
 .project-card:first-of-type {
   width: 100%;
+  margin: auto;
 }
