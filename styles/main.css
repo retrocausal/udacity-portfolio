@@ -30,12 +30,103 @@ header {
   background: #111010;
 }
 
+footer {
+  color: #f4f8fb;
+  font-size: large;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact,
+.credits,
+.misc {
+  font-family: "Quicksand",sans-serif;
+  width: 100%;
+  line-height: 1.5;
+  font-size: larger;
+}
+
+.contact {
+  order: 2;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+  align-items: center;
+  text-align: center;
+}
+
+.misc {
+  order: 1;
+  text-align: center;
+  padding: 1em;
+}
+
+.credits {
+  order: 3;
+  text-align: center;
+  padding: 1em;
+  font-variant-caps: petite-caps;
+  font-family: "Quicksand",sans-serif;
+}
+
+.order0 {
+  order: 0;
+}
+
+.order4 {
+  order: 4;
+}
+
+.contact-icons,
+.contact-icons:hover,
+.contact-icons:visited,
+.credit-source,
+.credit-source:hover,
+.credit-source:visited {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.credit-source:hover {
+  color: #d0d0d0;
+}
+
+.contact-icons {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.contact-icons:hover {
+  color: #d0d0d0;
+}
+
+.emphasize,
+.references {
+  font-family: "Cinzel Decorative", Helvetica, sans-serif;
+  font-size: smaller;
+  padding: 0.3em;
+}
+
+.emphasize {
+  font-style: oblique;
+}
+
+.brief {
+  font-family: "Quicksand",sans-serif;
+  font-weight: lighter;
+  font-size: small;
+  line-height: 1.5;
+}
+
 sup {
   width: auto;
   font-family: "Cinzel Decorative", Helvetica, sans-serif;
 }
 
 .breathe {
+  width: 100%;
   font-size: x-large;
   line-height: 3;
 }
@@ -112,11 +203,10 @@ h6 {
   font-size: 3.75em;
 }
 
-.barcode::after,
-.dp-as-text::after {
-  content: "NP";
+.barcode,
+.dp-as-text {
   text-align: center;
-  text-rendering: geometricPrecision;
+  /*text-rendering: geometricPrecision;*/
   font-weight: lighter;
 }
 

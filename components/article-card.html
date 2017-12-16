@@ -35,7 +35,7 @@
 {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                     media="(min-width:1280px)"
                     sizes="calc((90vw) / 3)">
-                  <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
+                  <img class="responsive-cover-image-portrait" src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="Project {{project.title}} cover image">
                 </picture>
               </figure>
             </div>
@@ -84,7 +84,7 @@
               <a class="github-link-anchor" target="_blank" href="{{project.meta.github}}"></a>
             </h4>
             <h4 class="article-info">
-              <a class="article-info-anchor" name="{{pmid}}" on-click="modalize"></a>
+              <a class="article-info-anchor" on-click="modalize"></a>
             </h4>
           </div>
           <div id="breathe" class="breathe"></div>
@@ -123,7 +123,7 @@
 {{project.coverImg.src}}-x-large.{{project.coverImg.format}} 1280w"
                       media="(min-width:999px)"
                       sizes="calc(.67*90%)">
-                    <img src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="{{project.title}} cover image">
+                    <img class="modal-cover-img" src="{{project.coverImg.src}}-small.{{project.coverImg.format}}" alt="{{project.title}} cover image">
                   </picture>
                   <figcaption>{{project.coverImg.caption}}</figcaption>
                 </figure>
@@ -141,6 +141,7 @@
 
       constructor(project) {
         super();
+        this.setAttribute('unresolved', 'unresolved');
         this.project = project;
       }
       static get is() {
@@ -197,8 +198,8 @@ Felix's origins remain disputed.`,
 
       }
       modalize(e) {
-        let t = e.target.getAttribute('name');
-        this.root.querySelector("#" + t).open();
+        // let t = e.target.getAttribute('name');
+        this.root.querySelector("#" + this.pmid).open();
       }
     }
     window.customElements.define(articleCard.is, articleCard);

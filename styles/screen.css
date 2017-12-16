@@ -3,6 +3,10 @@
   .display-picture {
     font-size: larger;
   }
+
+  .brief {
+    font-size: medium;
+  }
 }
 @media screen and (min-width:767px) {
   body {
@@ -55,6 +59,10 @@
   .project-card {
     width: 50%;
   }
+
+  .brief {
+    font-size: large;
+  }
 }
 @media screen and (min-width:900px) {
   .logo {
@@ -63,6 +71,23 @@
 
   .name {
     padding: 0 3.25em 0 0;
+  }
+
+  .contact {
+    width: 50%;
+  }
+
+  .credits,
+  .misc {
+    width: 100%;
+  }
+
+  .misc {
+    order: 1;
+  }
+
+  .contact {
+    order: 0;
   }
 }
 @media screen and (min-width:991px) {
